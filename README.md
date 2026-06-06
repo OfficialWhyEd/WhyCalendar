@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+<p align="center">
+  <img src="assets/banner.png" alt="WhyCalendar" width="100%"/>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="https://img.shields.io/badge/Tauri-2-FFC131?style=flat-square&logo=tauri&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-TypeScript-61DAFB?style=flat-square&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/Google_Calendar-OAuth-4285F4?style=flat-square&logo=googlecalendar&logoColor=white" />
+  <img src="https://img.shields.io/badge/macOS-Monterey+-000000?style=flat-square&logo=apple&logoColor=white" />
+  <img src="https://img.shields.io/badge/status-active-brightgreen?style=flat-square" />
+</p>
 
-Currently, two official plugins are available:
+<br/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> Assistente personale AI per la gestione del calendario. App nativa macOS con Google Calendar integrato, AI chat contestuale, timer e promemoria intelligenti.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Come funziona
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+Google Calendar API → WhyCalendar → AI (Claude Code CLI)
+        ↑                                     ↓
+   OAuth 2.0                        Suggerimenti · Recap · Task
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+| Feature | Descrizione |
+|---------|-------------|
+| **Calendario AI** | Vista giornaliera/settimanale con chat AI contestuale |
+| **Timer intelligente** | Pomodoro + time tracking per ogni evento |
+| **Recap giornaliero** | AI sintetizza la giornata e suggerisce priorità |
+| **Promemoria** | Notifiche native macOS |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+<p align="center">
+  <img src="assets/screenshot.png" alt="WhyCalendar Dashboard" width="100%"/>
+</p>
+
+---
+
+## Features
+
+- **Google Calendar sync** — OAuth 2.0, lettura e scrittura eventi in tempo reale
+- **Chat AI integrata** — chiedi all'AI di organizzare la settimana, trovare buchi, creare eventi
+- **Timer & focus mode** — time tracking nativo per ogni slot di lavoro
+- **Mascotte WhySpidey** — feedback visivo animato sullo stato della giornata
+- **App nativa macOS** — Tauri 2, bundle `.app`, menu bar
+
+---
+
+## Stack
+
+- **Frontend**: React + TypeScript + Vite
+- **Backend**: Tauri 2 (Rust)
+- **AI**: Claude Code CLI — nessuna API key Anthropic
+- **Calendar**: Google Calendar API v3
+- **Auth**: OAuth 2.0 PKCE
+
+---
+
+## Setup
+
+```bash
+git clone https://github.com/OfficialWhyEd/WhyCalendar
+cd WhyCalendar
+
+npm install
+cd src-tauri && cargo build
+
+# Configura Google OAuth
+cp .env.example .env   # aggiungi GOOGLE_CLIENT_ID e GOOGLE_CLIENT_SECRET
+
+npm run tauri dev
 ```
+
+---
+
+## Struttura
+
+```
+WhyCalendar/
+├── src/
+│   ├── components/    # Calendar, Timer, Chat, Mascot
+│   ├── core/          # Google Calendar API client
+│   ├── hooks/         # useCalendar, useTimer, useAI
+│   └── utils/
+└── src-tauri/         # Backend Rust + OAuth handler
+```
+
+---
+
+<p align="center">Built by <a href="https://github.com/OfficialWhyEd">@whyed</a> · macOS · Tauri 2 · local-first</p>
