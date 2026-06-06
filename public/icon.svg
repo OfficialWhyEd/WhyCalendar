@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#000000" rx="180"/>
+  
+  <!-- Main text: whycalendar -->
+  <text x="512" y="480" 
+        font-family="SF Mono, Menlo, Monaco, monospace" 
+        font-size="120" 
+        font-weight="700" 
+        fill="#FFFFFF" 
+        text-anchor="middle" 
+        letter-spacing="4">
+    whycalendar
+  </text>
+  
+  <!-- Signature: By Whyed in calligraphic style -->
+  <text x="512" y="620" 
+        font-family="Apple Chancery, Snell Roundhand, cursive" 
+        font-size="100" 
+        fill="#39FF14" 
+        text-anchor="middle" 
+        letter-spacing="2">
+    By Whyed
+  </text>
+  
+  <!-- Decorative underline -->
+  <path d="M 262 660 Q 512 680 762 660" 
+        stroke="#39FF14" 
+        stroke-width="3" 
+        fill="none" 
+        opacity="0.6"/>
+</svg>
