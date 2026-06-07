@@ -177,37 +177,35 @@
     .btn-ghost:hover { border-color: rgba(255,255,255,.25); color: var(--text); }
 
     .hero-visual { position: relative; z-index: 2; will-change: transform; }
-    .mascot-wrap { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 2rem; }
-    .mascot-glow {
-      position: absolute; width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(34,197,94,.22) 0%, transparent 70%);
-      animation: breathe 5s ease-in-out infinite;
-    }
-    @keyframes breathe { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.2);opacity:1} }
-    .mascot-img { height: 110px; position: relative; z-index: 1; filter: drop-shadow(0 0 20px rgba(34,197,94,.4)); will-change: transform; }
 
-    .terminal {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
-      font-family: var(--mono); font-size: .8rem;
-      box-shadow: 0 24px 48px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04);
-    }
-    .terminal-bar {
-      display: flex; align-items: center; gap: .5rem; padding: .7rem 1rem;
-      background: rgba(255,255,255,.025); border-bottom: 1px solid var(--border);
-    }
+    /* ── CALENDAR WIDGET ── */
+    .cal-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 24px 48px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04); }
+    .cal-topbar { display: flex; align-items: center; gap: .6rem; padding: .65rem 1rem; background: rgba(255,255,255,.025); border-bottom: 1px solid var(--border); }
+    .cal-month-label { font-family: var(--mono); font-size: .72rem; font-weight: 700; color: var(--text); flex: 1; text-align: center; }
+    .cal-nav { font-family: var(--mono); font-size: .8rem; color: var(--dim); cursor: default; letter-spacing: .1em; }
+    .cal-weekdays { display: grid; grid-template-columns: repeat(7,1fr); text-align: center; padding: .5rem .75rem .25rem; }
+    .cal-weekdays span { font-family: var(--mono); font-size: .55rem; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+    .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; padding: .25rem .75rem .6rem; }
+    .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .65rem; color: var(--sub); border-radius: 6px; cursor: default; position: relative; }
+    .cal-day.today { background: var(--green); color: #060c09; font-weight: 700; }
+    .cal-day.has-event::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--green); opacity: .6; }
+    .cal-day.today::after { background: #060c09; opacity: .5; }
+    .cal-day.other-month { opacity: .25; }
+    .cal-day.selected { background: rgba(34,197,94,.18); border: 1px solid rgba(34,197,94,.4); color: var(--green); }
+    .cal-events-strip { border-top: 1px solid var(--border); padding: .65rem .85rem; display: flex; flex-direction: column; gap: .4rem; }
+    .cal-event { display: flex; align-items: center; gap: .6rem; padding: .35rem .6rem; border-radius: 6px; }
+    .ev-blue { background: rgba(96,165,250,.08); border-left: 2px solid rgba(96,165,250,.6); }
+    .ev-green { background: rgba(34,197,94,.08); border-left: 2px solid rgba(34,197,94,.5); }
+    .ev-time { font-family: var(--mono); font-size: .6rem; color: var(--dim); flex-shrink: 0; }
+    .ev-name { font-size: .75rem; color: var(--sub); }
+    .cal-chat-wrap { margin-top: 1rem; display: flex; flex-direction: column; gap: .6rem; }
+    .cal-chat-q { font-family: var(--mono); font-size: .78rem; color: rgba(34,197,94,.75); background: rgba(34,197,94,.06); border: 1px solid rgba(34,197,94,.18); border-radius: 8px 8px 8px 2px; padding: .65rem .9rem; line-height: 1.5; }
+    .cal-chat-a { display: flex; align-items: flex-start; gap: .55rem; font-size: .8rem; color: var(--sub); background: rgba(255,255,255,.025); border: 1px solid var(--border); border-radius: 2px 8px 8px 8px; padding: .65rem .9rem; line-height: 1.55; }
+    .cal-a-icon { color: var(--green); flex-shrink: 0; font-size: .7rem; margin-top: .1rem; }
+    .cal-a-accent { color: var(--green); font-weight: 600; }
+
     .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot-r{background:#ff5f57;} .dot-y{background:#febc2e;} .dot-g{background:#28c840;}
-    .terminal-title { font-family: 'Satoshi',sans-serif; font-size:.72rem; color: var(--dim); margin-left: auto; letter-spacing:.04em; }
-    .terminal-body { padding: 1.25rem 1.5rem; line-height: 1.85; height: 16rem; overflow: hidden; }
-    .t-user { color: var(--green); }
-    .t-ai { color: #a8d5b8; }
-    .t-dim { color: var(--dim); }
-    .t-line { margin-bottom: .1rem; }
-    .cursor {
-      display: inline-block; width: 7px; height: 1em; background: var(--green);
-      vertical-align: text-bottom; animation: blink 1.1s step-end infinite; margin-left: 1px;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
     section { padding: 7rem 3rem; }
     .section-label {
@@ -393,10 +391,6 @@
       .hero-h1 { font-size: 2.8rem; line-height: .95; }
       .hero-h1-b { font-size: 2.8rem; line-height: .95; }
       .hero-sub { font-size: .9rem; margin-bottom: 2rem; }
-      .mascot-img { height: 80px; }
-      .mascot-glow { width: 160px; height: 160px; }
-      .mascot-wrap { margin-bottom: 1rem; }
-      .terminal-body { height: 13rem; font-size: .75rem; padding: 1rem 1.1rem; }
       section { padding: 4rem 1.5rem; }
       .screenshot-wrap { margin: 0 1.25rem 2.5rem; border-radius: 12px; }
       .arch-section { padding: 3.5rem 1.5rem 2.5rem; }
@@ -496,16 +490,29 @@
   </div>
 
   <div class="hero-visual enter-3" id="hero-visual">
-    <div class="mascot-wrap">
-      <div class="mascot-glow"></div>
-      <img class="mascot-img" id="mascot" src="logo.png" alt="WhySpidey" />
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-        <span class="terminal-title">WhyCalendar · Google Calendar</span>
+    <div class="cal-card">
+      <div class="cal-topbar">
+        <div class="cal-dots"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span></div>
+        <span class="cal-month-label" id="cal-month">June 2026</span>
+        <span class="cal-nav">‹ ›</span>
       </div>
-      <div class="terminal-body" id="tw-body"></div>
+      <div class="cal-weekdays">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+      <div class="cal-grid" id="cal-grid">
+        <!-- filled by JS -->
+      </div>
+      <div class="cal-events-strip" id="cal-events">
+        <div class="cal-event ev-blue"><span class="ev-time">10:00</span><span class="ev-name">Team Standup</span></div>
+        <div class="cal-event ev-green"><span class="ev-time">14:00</span><span class="ev-name">Focus Block ✓</span></div>
+      </div>
+    </div>
+    <div class="cal-chat-wrap">
+      <div class="cal-chat-q">"What's free Thursday for a 2h focus block?"</div>
+      <div class="cal-chat-a" id="cal-chat-a">
+        <span class="cal-a-icon">◆</span>
+        <span id="cal-a-text">Thursday 14:00–16:00 is free → <span class="cal-a-accent">Event created ✓</span></span>
+      </div>
     </div>
   </div>
 
@@ -836,16 +843,37 @@
 <script>
   const heroText   = document.getElementById('hero-text');
   const heroVisual = document.getElementById('hero-visual');
-  const mascot     = document.getElementById('mascot');
   if (window.innerWidth > 768) {
     document.addEventListener('mousemove', e => {
       const x = (e.clientX / window.innerWidth  - 0.5) * 18;
       const y = (e.clientY / window.innerHeight - 0.5) * 10;
       if (heroText)   heroText.style.transform   = `translate(${-x * 0.3}px, ${-y * 0.3}px)`;
       if (heroVisual) heroVisual.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
-      if (mascot)     mascot.style.transform     = `translate(${x * 0.4}px, ${y * 0.4}px)`;
     });
   }
+
+  /* calendar grid */
+  (function(){
+    const grid = document.getElementById('cal-grid');
+    if(!grid) return;
+    const eventDays = [3,7,10,14,17,21,24];
+    const today = 7; // June 7
+    const selectedDay = 12; // Thursday
+    const offset = 0; // June starts Monday
+    for(let i = 0; i < 35; i++){
+      const day = i - offset + 1;
+      const d = document.createElement('div');
+      d.className = 'cal-day';
+      if(day < 1 || day > 30){ d.classList.add('other-month'); d.textContent = day < 1 ? (30+day) : (day-30); }
+      else {
+        d.textContent = day;
+        if(day === today) d.classList.add('today');
+        if(day === selectedDay) d.classList.add('selected');
+        if(eventDays.includes(day)) d.classList.add('has-event');
+      }
+      grid.appendChild(d);
+    }
+  })();
 
   const revealIo = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIo.unobserve(e.target); } });
